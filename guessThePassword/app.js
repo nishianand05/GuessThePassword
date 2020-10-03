@@ -1,17 +1,17 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => { //arrow function
     const wordCount = 10;
     var guessCount = 4;
     var password = '';
   
     var start = document.getElementById('start');
-    start.addEventListener('click', () => {
+    start.addEventListener('click', () => { //arrow function
       toggleClasses(document.getElementById('start-screen'), 'hide', 'show');
       toggleClasses(document.getElementById('game-screen'), 'hide', 'show');
       startGame();
     });
 
-function toggleClasses(element, ...classNames) {
-    classNames.forEach(name => element.classList.toggle(name));
+function toggleClasses(element, ...classNames) { //rest operator
+    classNames.forEach(name => element.classList.toggle(name)); //arrow function
 
     // for (let i = 1; i < arguments.length; i++) {
     //     element.classList.toggle(arguments[i]);
@@ -23,7 +23,7 @@ function startGame() {
     var wordList = document.getElementById('word-list');
     // 'words' variable is from words.js
     var randomWords = getRandomValues(words); // eslint-disable-line no-undef
-    randomWords.forEach(word => {
+    randomWords.forEach(word => { //arrow function
       var li = document.createElement('li');
       li.innerText = word;
       wordList.appendChild(li);
@@ -41,7 +41,7 @@ function startGame() {
 //     return shuffle(array).slice(0, numberOfVals);
 // }
 
-let getRandomValues = (array, numberOfVals = wordCount) => shuffle(array).slice(0, numberOfVals);
+let getRandomValues = (array, numberOfVals = wordCount) => shuffle(array).slice(0, numberOfVals); //arrow function
 
 
 function shuffle(array) {
@@ -55,7 +55,7 @@ function shuffle(array) {
     //   arrayCopy[idx1] = arrayCopy[idx2];
     //   arrayCopy[idx2] = temp;
 
-      [arrayCopy[idx1],arrayCopy[idx2]] = [arrayCopy[idx2],arrayCopy[idx1]]
+      [arrayCopy[idx1],arrayCopy[idx2]] = [arrayCopy[idx2],arrayCopy[idx1]] //shuffling using array destructuring
     }
     return arrayCopy;
 }
@@ -63,7 +63,7 @@ function shuffle(array) {
 
 function setGuessCount(newCount) {
     guessCount = newCount;
-    document.getElementById('guesses-remaining').innerText = `Guesses remaining: ${guessCount}.`;
+    document.getElementById('guesses-remaining').innerText = `Guesses remaining: ${guessCount}.`; //template strings
 }
 
 
@@ -73,7 +73,7 @@ function updateGame(e) {
       var guess = e.target.innerText;
       var similarityScore = compareWords(guess, password);
       e.target.classList.add('disabled');
-      e.target.innerText = `${guess} --> Matching Letters: ${similarityScore}`;
+      e.target.innerText = `${guess} --> Matching Letters: ${similarityScore}`; //template strings
       setGuessCount(guessCount - 1);
 
       // check whether the game is over
